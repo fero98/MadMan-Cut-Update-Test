@@ -17,9 +17,9 @@ use crate::{AppState, CmdResult, err};
 
 /// GitHub serves this from the newest release that is neither a draft nor a prerelease, so
 /// publishing a draft is what tells installed copies about it. The installer reads the same file (tauri.conf.json).
-const LATEST_JSON: &str = "https://github.com/fero98/MadMan-Cut/releases/latest/download/latest.json";
+const LATEST_JSON: &str = "https://github.com/fero98/MadMan-Cut-Update-Test/releases/latest/download/latest.json";
 /// What's new and Download from GitHub open this fixed page, never an address from the file.
-const RELEASE_PAGE: &str = "https://github.com/fero98/MadMan-Cut/releases/latest";
+const RELEASE_PAGE: &str = "https://github.com/fero98/MadMan-Cut-Update-Test/releases/latest";
 const X_PROFILE: &str = "https://x.com/mach_builds";
 /// Tests serve the file locally through `NUZKY_UPDATE_URL`; no other address replaces GitHub.
 const TEST_SERVER: &str = "http://127.0.0.1:";
@@ -118,7 +118,7 @@ const NO_PACKAGE: &str =
 /// Errors that trying again cannot fix; the installers on GitHub can.
 const FINAL: [&str; 4] = ["UPDATE_NO_PACKAGE", "UPDATE_SIGNATURE", "UPDATE_SOURCE", "UPDATE_FOLDER"];
 /// latest.json names the package of each kind of install; only the release's own downloads are taken.
-const PACKAGES: &str = "https://github.com/fero98/MadMan-Cut/releases/download/";
+const PACKAGES: &str = "https://github.com/fero98/MadMan-Cut-Update-Test/releases/download/";
 
 /// Downloads the newest release for this kind of install and checks its signature against the key built into Nuzky.
 /// The package then waits for `restart_to_update`. `progress` gets the percentage downloaded. Returns its version, at
@@ -727,7 +727,7 @@ mod tests {
     #[test]
     fn takes_packages_only_from_the_release_downloads() {
         let url = |text: &str| tauri::Url::parse(text).unwrap().to_string();
-        assert!(trusted(&url("https://github.com/fero98/MadMan-Cut/releases/download/v0.2.0/MadMan.exe")));
+        assert!(trusted(&url("https://github.com/fero98/MadMan-Cut-Update-Test/releases/download/v0.2.0/MadMan.exe")));
         for other in [
             "https://github.com/someone/nuzky/releases/download/v0.2.0/Nuzky.AppImage",
             "https://github.com/nuzkyapp/nuzky/releases/download/../../../someone/x/releases/download/v1/a",
